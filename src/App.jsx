@@ -525,6 +525,7 @@ function matchesQuery(item, query) {
 
   export default function App() {
   const [query, setQuery] = useState("");
+  const [filterOpen, setFilterOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("Sve");
   const [items, setItems] = useState(() => {
     const saved = localStorage.getItem("alati-lokacije-data");
@@ -689,25 +690,43 @@ function matchesQuery(item, query) {
         <div style={styles.card}>
           <h2 style={{ marginTop: 0, fontSize: "20px" }}>Pretraga</h2>
 
-          <div style={{ marginBottom: "14px" }}>
+          <div style={{ display: "flex", gap: "12px", marginBottom: "14px" }}>
             <input
-              style={styles.input}
+              style={{...styles.input, flex: 1}}
               value={query}
               onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={(e) => { if (e.key === "Enter") e.target.blur(); }}
               placeholder="Unesi šifru, npr. 16630, W16630/2 ili lokaciju A3"
             />
+            <button style={styles.activeButton} onClick={() => {}}>Pretraži</button>
           </div>
 
-          <div style={styles.filterWrap}>
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                style={selectedCategory === category ? styles.activeButton : styles.button}
-              >
-                {category}
-              </button>
-            ))}
+          <div style={{ position: "relative", marginBottom: "14px" }}>
+            <button
+              style={{...styles.button, background: selectedCategory !== "Sve" ? "#0f172a" : "white", color: selectedCategory !== "Sve" ? "white" : "#0f172a"}}
+              onClick={() => setFilterOpen(!filterOpen)}
+            >
+              Filter {selectedCategory !== "Sve" ? `()` : ""}
+            </button>
+            {filterOpen && (
+              <div style={{ position: "absolute", top: "44px", left: 0, background: "white", border: "1px solid #cbd5e1", borderRadius: "12px", boxShadow: "0 4px 16px rgba(0,0,0,0.12)", zIndex: 100, minWidth: "180px", padding: "8px" }}>
+                <button
+                  onClick={() => { setSelectedCategory("Sve"); setFilterOpen(false); }}
+                  style={{ display: "block", width: "100%", textAlign: "left", padding: "10px 14px", borderRadius: "8px", border: "none", background: selectedCategory === "Sve" ? "#f1f5f9" : "transparent", cursor: "pointer", fontSize: "14px" }}
+                >
+                  Sve kategorije
+                </button>
+                {categories.filter(c => c !== "Sve").map((category) => (
+                  <button
+                    key={category}
+                    onClick={() => { setSelectedCategory(category); setFilterOpen(false); }}
+                    style={{ display: "block", width: "100%", textAlign: "left", padding: "10px 14px", borderRadius: "8px", border: "none", background: selectedCategory === category ? "#f1f5f9" : "transparent", cursor: "pointer", fontSize: "14px", fontWeight: selectedCategory === category ? 600 : 400 }}
+                  >
+                    {category}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           <div style={styles.hint}>
