@@ -712,15 +712,15 @@ function matchesQuery(item, query) {
               <div style={{ position: "absolute", top: "44px", left: 0, background: "white", border: "1px solid #cbd5e1", borderRadius: "12px", boxShadow: "0 4px 16px rgba(0,0,0,0.12)", zIndex: 100, minWidth: "180px", padding: "8px" }}>
                 <button
                   onClick={() => { setSelectedCategory("Sve"); setFilterOpen(false); }}
-                  style={{ display: "block", width: "100%", textAlign: "left", padding: "10px 14px", borderRadius: "8px", border: "none", background: selectedCategory === "Sve" ? "#f1f5f9" : "transparent", cursor: "pointer", fontSize: "14px" }}
+                  style={{ display: "block", width: "100%", textAlign: "left", padding: "10px 14px", borderRadius: "8px", border: "none", background: selectedCategory === "Sve" ? "#f1f5f9" : "transparent", cursor: "pointer", fontSize: "14px", color: "#0f172a" }}
                 >
                   Sve kategorije
                 </button>
-                {categories.filter(c => c !== "Sve").map((category) => (
+                {["Alat"].map((category) => (
                   <button
                     key={category}
                     onClick={() => { setSelectedCategory(category); setFilterOpen(false); }}
-                    style={{ display: "block", width: "100%", textAlign: "left", padding: "10px 14px", borderRadius: "8px", border: "none", background: selectedCategory === category ? "#f1f5f9" : "transparent", cursor: "pointer", fontSize: "14px", fontWeight: selectedCategory === category ? 600 : 400 }}
+                    style={{ display: "block", width: "100%", textAlign: "left", padding: "10px 14px", borderRadius: "8px", border: "none", background: selectedCategory === category ? "#f1f5f9" : "transparent", cursor: "pointer", fontSize: "14px", fontWeight: selectedCategory === category ? 600 : 400, color: "#0f172a" }}
                   >
                     {category}
                   </button>
