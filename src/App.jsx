@@ -43,13 +43,14 @@ const initialData = [
   { id: "W18315/2", baseCode: "18315", name: "Alat 18315", category: "Alat", location: "B6", status: "Uneto", notes: "" },
   { id: "W18932/1", baseCode: "18932", name: "Alat 18932", category: "Alat", location: "A6", status: "Uneto", notes: "" },
 
-  { id: "W18792/9", baseCode: "18792", name: "Alat 18792", category: "Alat", location: "E7", status: "Uneto", notes: "" },
+  { id: "W18793/9", baseCode: "18793", name: "Alat 18793", category: "Alat", location: "E8", status: "Uneto", notes: "" },
+  { id: "W17098/1", baseCode: "17098", name: "Alat 17098", category: "Alat", location: "E7", status: "Uneto", notes: "" },
   { id: "W18852/3", baseCode: "18852", name: "Alat 18852", category: "Alat", location: "D7", status: "Uneto", notes: "" },
   { id: "W17047/2", baseCode: "17047", name: "Alat 17047", category: "Alat", location: "C7", status: "Uneto", notes: "" },
   { id: "W18894/7", baseCode: "18894", name: "Alat 18894", category: "Alat", location: "B7", status: "Uneto", notes: "" },
   { id: "W19027/1", baseCode: "19027", name: "Alat 19027", category: "Alat", location: "A7", status: "Uneto", notes: "" },
 
-  { id: "W17507/2", baseCode: "17507", name: "Alat 17507", category: "Alat", location: "E8", status: "Uneto", notes: "" },
+  { id: "W17507/2", baseCode: "17507", name: "Alat 17507", category: "Alat", location: "E35", status: "Uneto", notes: "" },
   { id: "W19069/1", baseCode: "19069", name: "Alat 19069", category: "Alat", location: "D8", status: "Uneto", notes: "" },
   { id: "W18644/3", baseCode: "18644", name: "Alat 18644", category: "Alat", location: "C8", status: "Uneto", notes: "" },
   { id: "W18643/3", baseCode: "18643", name: "Alat 18643", category: "Alat", location: "B8", status: "Uneto", notes: "" },
@@ -147,7 +148,7 @@ const initialData = [
 
   { id: "W18849/1", baseCode: "18849", name: "Alat 18849", category: "Alat", location: "E24", status: "Uneto", notes: "" },
   { id: "W17972/5", baseCode: "17972", name: "Alat 17972", category: "Alat", location: "D24", status: "Uneto", notes: "" },
-  { id: "W17857/7", baseCode: "17857", name: "Alat 17857", category: "Alat", location: "C24", status: "Uneto", notes: "" },
+  { id: "W18857/7", baseCode: "18857", name: "Alat 18857", category: "Alat", location: "C24", status: "Uneto", notes: "" },
   { id: "W18746/3", baseCode: "18746", name: "Alat 18746", category: "Alat", location: "B24", status: "Uneto", notes: "" },
   { id: "W17610/2", baseCode: "17610", name: "Alat 17610", category: "Alat", location: "A24", status: "Uneto", notes: "" },
 
@@ -296,7 +297,7 @@ const materialsData = {
   "W18860/3": ["E 35.7-08599.14/4/3/2/1"],
   "W18315/2": ["E 35.7-07023.47/2"],
   "W18932/1": ["35.7-08562.04/3"],
-  "W18792/9": ["E 1135013708026/3/2", "E 1135013708024/3/2"],
+  "W18793/9": ["E 1135013708026/3/2", "E 1135013708024/3/2"],
   "W18852/3": ["E 35.7-08488.03/4"],
   "W17047/2": ["E 35.7-07197.39/E/1"],
   "W18894/7": ["E 35.6-08663.02/BNOS"],
@@ -383,7 +384,7 @@ const materialsData = {
   "W17220/1": ["E 82547499/4", "E 82308225/5", "E 82648184/3"],
   "W18849/1": ["E 35.7-08487.41/2"],
   "W17972/5": ["E 35.7-07523.59/3"],
-  "W17857/7": ["E 35.7-08717.05/3/2/1"],
+  "W18857/7": ["E 35.7-08717.05/3/2/1"],
   "W18746/3": ["E 35.7-08556.26/3/2/1"],
   "W17610/2": ["E 35.7-07100.40/A/3"],
   "W10692/2": ["E 35.7-06009.10/1"],
