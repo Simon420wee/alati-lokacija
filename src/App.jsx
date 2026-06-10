@@ -90,7 +90,19 @@ export default function App() {
     const v = value.trim();
     if (!v) return;
     setRecentSearches((prev) => {
-      const next = [v, ...prev.filter((q) => q.toLowerCase() !== v.toLowerCase())].slice(0, 3);
+      const vl = v.toLowerCase();
+      // ako je v samo skraćeni početak već zapamćene pretrage, ne pamti ga
+      if (prev.some((q) => q.toLowerCase() !== vl && q.toLowerCase().startsWith(vl))) {
+        return prev;
+      }
+      // izbaci duplikat i starije, kraće verzije iste pretrage (npr. "166" kad stigne "16630")
+      const next = [
+        v,
+        ...prev.filter((q) => {
+          const ql = q.toLowerCase();
+          return ql !== vl && !vl.startsWith(ql);
+        }),
+      ].slice(0, 3);
       try {
         localStorage.setItem("alati-recent-searches", JSON.stringify(next));
       } catch {
@@ -99,6 +111,13 @@ export default function App() {
       return next;
     });
   }
+
+  // zapamti pretragu čim korisnik prestane da kuca (radi i kad se samo spusti tastatura)
+  useEffect(() => {
+    if (!query.trim()) return;
+    const t = setTimeout(() => saveRecentSearch(query), 1200);
+    return () => clearTimeout(t);
+  }, [query]);
 
   // auth / admin
   const [session, setSession] = useState(null);
