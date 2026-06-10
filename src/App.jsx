@@ -75,6 +75,31 @@ export default function App() {
   const [filterOpen, setFilterOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("Sve");
 
+  // poslednje pretrage (po uređaju, localStorage)
+  const [recentSearches, setRecentSearches] = useState(() => {
+    try {
+      const stored = JSON.parse(localStorage.getItem("alati-recent-searches") || "[]");
+      return Array.isArray(stored) ? stored.slice(0, 3) : [];
+    } catch {
+      return [];
+    }
+  });
+  const [searchFocused, setSearchFocused] = useState(false);
+
+  function saveRecentSearch(value) {
+    const v = value.trim();
+    if (!v) return;
+    setRecentSearches((prev) => {
+      const next = [v, ...prev.filter((q) => q.toLowerCase() !== v.toLowerCase())].slice(0, 3);
+      try {
+        localStorage.setItem("alati-recent-searches", JSON.stringify(next));
+      } catch {
+        // localStorage nedostupan — ignoriši
+      }
+      return next;
+    });
+  }
+
   // auth / admin
   const [session, setSession] = useState(null);
   const [loginOpen, setLoginOpen] = useState(false);
@@ -269,9 +294,35 @@ export default function App() {
               onKeyDown={(e) => {
                 if (e.key === "Enter") e.target.blur();
               }}
+              onFocus={() => setSearchFocused(true)}
+              onBlur={() => {
+                setSearchFocused(false);
+                saveRecentSearch(query);
+              }}
               placeholder="Šifra, npr. 16630, W16630/2 ili lokacija A3"
               inputMode="search"
             />
+            {searchFocused && recentSearches.length > 0 && (
+              <div className="al-recent-menu">
+                <div className="al-recent-title">Poslednje pretrage</div>
+                {recentSearches.map((q) => (
+                  <button
+                    key={q}
+                    className="al-recent-option"
+                    onMouseDown={(e) => {
+                      e.preventDefault();
+                      setQuery(q);
+                    }}
+                  >
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+                      <circle cx="12" cy="12" r="9" />
+                      <polyline points="12 7 12 12 15.5 14" />
+                    </svg>
+                    <span>{q}</span>
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className="al-search-row">
